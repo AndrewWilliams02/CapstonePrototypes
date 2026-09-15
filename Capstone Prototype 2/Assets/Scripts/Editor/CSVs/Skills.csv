@@ -1,0 +1,3 @@
+Name,Description,Damage,Number of Hits,Delay (Max 10s),Cost
+Strike,A regular strike.,2,1,4,1
+Double Strike,A regular strike... but two!,2,2,6,2
