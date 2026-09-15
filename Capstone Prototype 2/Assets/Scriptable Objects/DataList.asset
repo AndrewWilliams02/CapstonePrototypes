@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp-Editor::DataList
   allEnemies: []
   allSkills:
-  - {fileID: 11400000, guid: 8f9627e42e2eaab418735cce8ee8fc41, type: 2}
-  - {fileID: 11400000, guid: 314f0273d7423504f9f4aaebe33bd1ae, type: 2}
+  - {fileID: 11400000, guid: 16e2a225be5a5e645a0152c2c032b71a, type: 2}
+  - {fileID: 11400000, guid: bbabf4ea640e7d24e853e8c005cb21a3, type: 2}
