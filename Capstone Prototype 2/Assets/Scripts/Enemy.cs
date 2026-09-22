@@ -1,10 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     public Player player;
 
-    public float health;
     public Vector2 damage;
     public TestTypes enemyType = TestTypes.Red;
 
@@ -17,7 +17,8 @@ public class Enemy : MonoBehaviour
 
     public void AttackPlayer()
     {
-        
+        float finalDamage = Mathf.Round(Random.Range(damage.x, damage.y) * 10f) / 10f;
+        player.TakeDamage(finalDamage);
     }
 
     public void TypeCheck(TestTypes attackType)
@@ -81,9 +82,13 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         float finalDamage = damage * damageMod;
-        health -= finalDamage;
         Debug.Log($"Enemy took {finalDamage}");
 
+        ResetState();
+    }
+
+    public void ResetState()
+    {
         damageMod = 1;
     }
 }

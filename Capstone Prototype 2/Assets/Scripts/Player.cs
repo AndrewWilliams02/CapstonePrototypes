@@ -2,31 +2,25 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public TurnManager tm;
     public ConstraintsManager cm;
     public Enemy enemy;
     public SkillTest[] skills;
     int[] skillCooldowns = new int[4];
     int[] skillUses = new int[4];
-    public float health;
     public int maxEnergy;
     int energy = 0;
 
+    public SpriteRenderer[] energyIcons;
+
     private void Start()
     {
-        skillCooldowns[0] = 0;
-        skillCooldowns[1] = 0;
-        skillCooldowns[2] = 0;
-        skillCooldowns[3] = 0;
-
-        skillUses[0] = skills[0].maxUses;
-        skillUses[1] = skills[1].maxUses;
-        skillUses[2] = skills[2].maxUses;
-        skillUses[3] = skills[3].maxUses;
+        ResetState();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-
+        Debug.Log($"Player took {damage}");
     }
 
     public void UseSkill(int skillIndex)
@@ -53,6 +47,7 @@ public class Player : MonoBehaviour
             else
             {
                 energy -= skills[skillIndex].cost;
+                SetEnergyUI();
             }
         }
         if (cm.cooldownsEnabled)
@@ -65,5 +60,45 @@ public class Player : MonoBehaviour
         }
 
         enemy.TakeDamage(skills[skillIndex].damage);
+        EndTurn();
+    }
+
+    void EndTurn()
+    {
+        if(cm.energyCostEnabled && (energy < maxEnergy))
+        {
+            energy++;
+            SetEnergyUI();
+        }
+        tm.isPlayerTurn = false;
+    }
+
+    void SetEnergyUI()
+    {
+        for (int i = 0; i < energyIcons.Length; i++)
+        {
+            if ((i+1) == energy)
+            {
+                energyIcons[i].color = Color.blue;
+            }
+            else
+            {
+                energyIcons[i].color = Color.grey;
+            }
+        }
+    }
+
+    public void ResetState()
+    {
+        energy = 0;
+        SetEnergyUI();
+        for (int i = 0; i < skillCooldowns.Length; i++)
+        {
+            skillCooldowns[i] = 0;
+        }
+        for (int i = 0; i < skillUses.Length; i++)
+        {
+            skillUses[i] = skills[i].maxUses;
+        }
     }
 }
