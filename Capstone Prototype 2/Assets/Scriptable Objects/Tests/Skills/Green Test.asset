@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5ebf59b2ce2c334fb1ec5f36cacc515, type: 3}
-  m_Name: Strike
-  m_EditorClassIdentifier: Assembly-CSharp-Editor::Skills
-  skillName: Strike
-  skillDescription: A regular strike.
-  damage: 2
-  numOfHits: 1
-  delay: 4
-  cost: 1
+  m_Script: {fileID: 11500000, guid: 41422038e64706f40a9fce57ce1625da, type: 3}
+  m_Name: Green Test
+  m_EditorClassIdentifier: Assembly-CSharp::SkillTest
+  skillName: Green
+  damage: 10
+  cost: 4
+  maxUses: 5
+  turnCooldown: 3
+  skillType: 2
