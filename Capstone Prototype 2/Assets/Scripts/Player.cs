@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     int[] skillCooldowns = new int[3];
     int[] skillUses = new int[3];
     public int maxEnergy;
-    int energy = 1;
+    int energy = 3;
 
     public Image[] energyIcons;
     public TextMeshProUGUI[] skillUsesText;
@@ -51,6 +51,11 @@ public class Player : MonoBehaviour
             if (skills[skillIndex].cost > energy)
             {
                 Debug.Log("Not enough energy!");
+                if(cm.maxUsesEnabled)
+                {
+                    skillUses[skillIndex]++;
+                    skillUsesText[skillIndex].text = $"Max Uses: {skillUses[skillIndex]}/{skills[skillIndex].maxUses}";
+                }
                 return;
             }
             else
@@ -105,7 +110,7 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < energyIcons.Length; i++)
         {
-            if ((i+1) == energy)
+            if ((i+1) <= energy)
             {
                 energyIcons[i].color = Color.cyan;
             }
@@ -118,11 +123,12 @@ public class Player : MonoBehaviour
 
     public void ResetState()
     {
-        energy = 1;
+        energy = 3;
         SetEnergyUI();
         for (int i = 0; i < skillCooldowns.Length; i++)
         {
             skillCooldowns[i] = 0;
+            cooldowns[i].SetActive(false); //Not working
         }
         for (int i = 0; i < skillUses.Length; i++)
         {

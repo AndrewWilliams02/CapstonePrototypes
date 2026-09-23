@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillTest
   skillName: Red
   damage: 3
-  cost: 1
+  cost: 0
   maxUses: 15
   turnCooldown: 1
   skillType: 0

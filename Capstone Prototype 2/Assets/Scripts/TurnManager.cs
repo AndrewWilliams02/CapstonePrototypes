@@ -26,7 +26,7 @@ public class TurnManager : MonoBehaviour
         else
         {
             if (battleUIEnabled) { battleUI.SetActive(false); }
-            StartCoroutine(EnemyTurn());
+            EnemyTurn();
         }
     }
 
@@ -48,17 +48,16 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    IEnumerator EnemyTurn()
+    void EnemyTurn()
     {
+        battleUIEnabled = false;
         enemy.AttackPlayer();
-        yield return new WaitForSeconds(2);
         isPlayerTurn = true;
     }
 
     public void ResetBattle()
     {
         SetUI();
-        StopAllCoroutines();
         player.ResetState();
         enemy.ResetState();
         isPlayerTurn = true;

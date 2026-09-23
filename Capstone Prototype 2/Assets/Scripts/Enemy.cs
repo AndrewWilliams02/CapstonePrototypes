@@ -33,12 +33,12 @@ public class Enemy : MonoBehaviour
             else if (enemyType == TestTypes.Green)
             {
                 damageMod = 2;
-                Debug.Log("Attack is Resisted");
+                Debug.Log("Attack is Effective");
             }
             else if (enemyType == TestTypes.Blue)
             {
                 damageMod = 0.5f;
-                Debug.Log("Attack is Effective");
+                Debug.Log("Attack is Resisted");
             }
         }
         else if (attackType == TestTypes.Green)
@@ -46,12 +46,12 @@ public class Enemy : MonoBehaviour
             if (enemyType == TestTypes.Red)
             {
                 damageMod = 0.5f;
-                Debug.Log("Attack is Neutral");
+                Debug.Log("Attack is Resisted");
             }
             else if (enemyType == TestTypes.Green)
             {
                 damageMod = 1f;
-                Debug.Log("Attack is Resisted");
+                Debug.Log("Attack is Neutral");
             }
             else if (enemyType == TestTypes.Blue)
             {
@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
             if (enemyType == TestTypes.Red)
             {
                 damageMod = 2;
-                Debug.Log("Attack is Neutral");
+                Debug.Log("Attack is Effective");
             }
             else if (enemyType == TestTypes.Green)
             {
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
             else if (enemyType == TestTypes.Blue)
             {
                 damageMod = 1;
-                Debug.Log("Attack is Effective");
+                Debug.Log("Attack is Neutral");
             }
         }
     }
@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour
     {
         if(elementEnabled)
         {
-        TypeCheck(skill.skillType);
+            TypeCheck(skill.skillType);
         }
 
         float finalDamage = skill.damage * damageMod;
