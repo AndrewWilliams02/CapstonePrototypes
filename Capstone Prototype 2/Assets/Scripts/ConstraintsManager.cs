@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ConstraintsManager : MonoBehaviour
 {
-    public bool maxUsesEnabled = false;
-    public bool energyCostEnabled = false;
-    public bool elementsEnabled = false;
-    public bool cooldownsEnabled = false;
+    public bool maxUsesEnabled = true;
+    public bool energyCostEnabled = true;
+    public bool elementsEnabled = true;
+    public bool cooldownsEnabled = true;
 }

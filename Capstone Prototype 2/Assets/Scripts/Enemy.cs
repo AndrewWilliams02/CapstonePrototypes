@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
         player.TakeDamage(finalDamage);
     }
 
-    public void TypeCheck(TestTypes attackType)
+    void TypeCheck(TestTypes attackType)
     {
         if (attackType == TestTypes.Red)
         {
@@ -79,9 +79,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(SkillTest skill, bool elementEnabled)
     {
-        float finalDamage = damage * damageMod;
+        if(elementEnabled)
+        {
+        TypeCheck(skill.skillType);
+        }
+
+        float finalDamage = skill.damage * damageMod;
         Debug.Log($"Enemy took {finalDamage}");
 
         ResetState();
