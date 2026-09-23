@@ -1,5 +1,7 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
@@ -8,12 +10,14 @@ public class TurnManager : MonoBehaviour
     public Enemy enemy;
     public GameObject battleUI;
     public GameObject[] cooldownsUI, energyCostUI, maxUsesUI;
+    TMP_Dropdown enemyType;
 
     public bool isPlayerTurn = true;
     public bool battleUIEnabled = true;
 
     private void Start()
     {
+        enemyType = cm.enemyType;
         SetUI();
     }
 
@@ -32,11 +36,6 @@ public class TurnManager : MonoBehaviour
 
     void SetUI()
     {
-        for (int i = 0; i < cooldownsUI.Length; i++)
-        {
-            cooldownsUI[i].SetActive(cm.cooldownsEnabled);
-        }
-
         for (int i = 0; i < energyCostUI.Length; i++)
         {
             energyCostUI[i].SetActive(cm.energyCostEnabled);
@@ -61,5 +60,23 @@ public class TurnManager : MonoBehaviour
         player.ResetState();
         enemy.ResetState();
         isPlayerTurn = true;
+    }
+
+    public void SetEnemyType()
+    {
+        enemy.enemyType = (TestTypes)enemyType.value;
+
+        if(enemy.enemyType == TestTypes.Red)
+        {
+            enemy.sr.color = Color.red;
+        }
+        else if (enemy.enemyType == TestTypes.Green)
+        {
+            enemy.sr.color = Color.green;
+        }
+        else if (enemy.enemyType == TestTypes.Blue)
+        {
+            enemy.sr.color = Color.blue;
+        }
     }
 }

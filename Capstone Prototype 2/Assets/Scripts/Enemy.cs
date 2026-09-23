@@ -10,6 +10,13 @@ public class Enemy : MonoBehaviour
 
     float damageMod = 1;
 
+    public SpriteRenderer sr;
+
+    private void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
     public void ChangeEnemyType(TestTypes type)
     {
         enemyType = type;

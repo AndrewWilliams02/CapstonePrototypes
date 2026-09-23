@@ -80,17 +80,20 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < skillCooldowns.Length; i++)
         {
-            if (skillCooldowns[i] > 1)
+            if (skillCooldowns[i] > 0)
             {
                 skillCooldowns[i]--;
-                cooldownText[i].text = $"{skillCooldowns[i]} Turns";
-            }
-            else
-            {
-                skillCooldowns[i]--;
-                cooldowns[i].SetActive(false);
-                cooldownText[i].text = $"{skillCooldowns[i]} Turns";
-                skillButtons[i].interactable = true;
+
+                if (skillCooldowns[i] <= 0)
+                {
+                    cooldowns[i].SetActive(false);
+                    cooldownText[i].text = "";
+                    skillButtons[i].interactable = true;
+                }
+                else
+                {
+                    cooldownText[i].text = $"{skillCooldowns[i]} Turns";
+                }
             }
         }
     }
@@ -102,8 +105,13 @@ public class Player : MonoBehaviour
             energy++;
             SetEnergyUI();
         }
+
         tm.isPlayerTurn = false;
-        UpdateCooldowns();
+
+        if (cm.cooldownsEnabled)
+        {
+            UpdateCooldowns();
+        }
     }
 
     void SetEnergyUI()
@@ -129,6 +137,7 @@ public class Player : MonoBehaviour
         {
             skillCooldowns[i] = 0;
             cooldowns[i].SetActive(false); //Not working
+            skillButtons[i].interactable = true;
         }
         for (int i = 0; i < skillUses.Length; i++)
         {
