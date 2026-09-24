@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI[] cooldownText;
     public Button[] skillButtons;
 
+    float health = 50;
+    public Slider healthBar;
+
     private void Start()
     {
         ResetState();
@@ -26,7 +29,9 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        health -= damage;
         Debug.Log($"Player took {damage}");
+        healthBar.value = health;
     }
 
     public void UseSkill(int skillIndex)
@@ -131,6 +136,10 @@ public class Player : MonoBehaviour
 
     public void ResetState()
     {
+        health = 50;
+        healthBar.value = health;
+        healthBar.maxValue = health;
+
         energy = 3;
         SetEnergyUI();
         for (int i = 0; i < skillCooldowns.Length; i++)

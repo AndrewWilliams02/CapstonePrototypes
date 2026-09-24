@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,9 +13,14 @@ public class Enemy : MonoBehaviour
 
     public SpriteRenderer sr;
 
+    float health = 50;
+    public Slider healthBar;
+
+
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        ResetState();
     }
 
     public void ChangeEnemyType(TestTypes type)
@@ -94,13 +100,18 @@ public class Enemy : MonoBehaviour
         }
 
         float finalDamage = skill.damage * damageMod;
+        health -= finalDamage;
+        healthBar.value = health;
         Debug.Log($"Enemy took {finalDamage}");
 
-        ResetState();
+        damageMod = 1;
     }
 
     public void ResetState()
     {
         damageMod = 1;
+        health = 50;
+        healthBar.value = health;
+        healthBar.maxValue = health;
     }
 }
